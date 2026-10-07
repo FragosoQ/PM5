@@ -481,7 +481,9 @@ function getCountryFlag(countryName) {
     'timor-leste': 'TL',
     'timor leste': 'TL',
     'macau': 'MO',
-    'macao': 'MO'
+    'macao': 'MO',
+    'austrália': 'AU',
+    'australia': 'AU'
   };
 
   const countryCode = countryMap[country];
@@ -573,7 +575,9 @@ function getCountryCoordinates(countryName) {
     'timor-leste': { lat: -8.6, lon: 125.6 },
     'timor leste': { lat: -8.6, lon: 125.6 },
     'macau': { lat: 22.2, lon: 113.5 },
-    'macao': { lat: 22.2, lon: 113.5 }
+    'macao': { lat: 22.2, lon: 113.5 },
+    'austrália': { lat: -35.3, lon: 149.1 },
+    'australia': { lat: -35.3, lon: 149.1 }
   };
 
   return coordinatesMap[country] || { lat: 38.7, lon: -9.1 }; // Portugal como fallback

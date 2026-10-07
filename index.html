@@ -659,7 +659,7 @@ footer {
       <div class="h-sep"></div>
       <span class="h-badge">Posto 1</span>
       <div class="h-sep"></div>
-      <span class="h-op">OP_149_2026</span>
+      <span class="h-op">--</span>
     </div>
 
     <span class="h-time" id="htime">—</span>
@@ -679,15 +679,15 @@ footer {
 
         <div class="hero-id">
           <div class="id-modelo-label">Cliente / País</div>
-          <div class="id-cliente">Bimbo del Peru</div>
+          <div class="id-cliente">--</div>
           <div class="id-pais">
-            <span class="id-flag">🇵🇪</span>
-            <span class="id-pais-info">Peru · EN</span>
+            <span class="id-flag"></span>
+            <span class="id-pais-info">--</span>
           </div>
 
           <div class="id-cliente-label" style="margin-top:clamp(10px,2vh,20px);">Modelo / Equipamento</div>
-          <div class="id-modelo">MWS715 SDS EXD DRD</div>
-          <div class="id-lote">Lote &nbsp;·&nbsp; 26L_1</div>
+          <div class="id-modelo">--</div>
+          <div class="id-lote">Lote &nbsp;·&nbsp; --</div>
         </div>
       </div>
 
@@ -707,7 +707,7 @@ footer {
       <!-- EVOLUÇÃO -->
       <div class="globe-section" style="flex-direction:column;gap:clamp(6px,1vh,10px);">
         <div style="font-size:clamp(14px,1.8vh,20px);font-weight:700;letter-spacing:5px;text-transform:uppercase;color:rgba(255,255,255,0.75);">Evolução Global</div>
-        <div id="evNum" style="font-family:'Bebas Neue',sans-serif;font-size:clamp(140px,22vh,340px);line-height:.85;letter-spacing:-2px;">46%</div>
+        <div id="evNum" style="font-family:'Bebas Neue',sans-serif;font-size:clamp(140px,22vh,340px);line-height:.85;letter-spacing:-2px;">--</div>
         <div id="statusLabel" style="font-size:clamp(15px,2vh,22px);letter-spacing:4px;color:rgba(255,255,255,0.75);text-transform:uppercase;">Em Curso · ON</div>
       </div>
 
@@ -715,12 +715,12 @@ footer {
       <div class="prazo-section">
         <div class="prazo-top">
           <span class="prazo-label">Prazo</span>
-          <span class="prazo-folga" id="folgaSpan">—</span>
+          <span class="prazo-folga" id="folgaSpan">--</span>
         </div>
         <div class="prazo-numbers">
-          <div class="prazo-used" id="prazoUsed">6</div>
+          <div class="prazo-used" id="prazoUsed">--</div>
           <div class="prazo-div">/</div>
-          <div class="prazo-total">8</div>
+          <div class="prazo-total">--</div>
           <div class="prazo-unit">dias</div>
         </div>
         <div class="prazo-track">
@@ -732,16 +732,16 @@ footer {
       <div class="details-section">
         <div class="detail-row">
           <span class="d-k">Início</span>
-          <span class="d-v">14 / 04 / 2026</span>
+          <span class="d-v">--</span>
         </div>
         <div class="detail-row">
           <span class="d-k">Previsto</span>
-          <span class="d-v">22 / 04 / 2026</span>
+          <span class="d-v">--</span>
         </div>
 
         <div class="detail-row">
           <span class="d-k">Enc. Cliente</span>
-          <span class="d-v">34_2026</span>
+          <span class="d-v">--</span>
         </div>
       </div>
 
@@ -756,10 +756,10 @@ footer {
       <span class="f-status">Em Curso</span>
       <span style="width:1px;height:20px;background:rgba(255,255,255,0.1);margin:0 8px;flex-shrink:0;"></span>
       <span class="f-op-label">Colaborador</span>
-      <span class="f-op">Richard · Diogo</span>
+      <span class="f-op">--</span>
     </div>
     <div class="f-center">
-      <div class="f-nserie">SWCG02003025</div>
+      <div class="f-nserie">--</div>
     </div>
     <div class="f-right">
       <div class="f-date" id="fdate">—</div>
@@ -777,31 +777,21 @@ const bc = v => v === 100 ? '#00ff87' : v > 0 ? '#00d4ff' : null;
 
 /* ── CONFIGURAÇÃO DE SHEET ── */
 const SHEET_POLL_INTERVAL = 20000;
-const SHEET_CONFIG = { id: '1GQUB52a2gKR429bjqJrNkbP5rjR7Z_4v85z9M7_Cr8Y', tab: 'PM1' };
+const SHEET_CONFIG = { id: '1GQUB52a2gKR429bjqJrNkbP5rjR7Z_4v85z9M7_Cr8Y', tab: 'PM5' };
 
-const FALLBACK_EV = 46;
+const EMPTY = '--';
 const evEl = document.getElementById('evNum');
 const clientEl = document.querySelector('.id-cliente');
-const CLIENT_FALLBACK = clientEl ? clientEl.textContent.trim() : 'Bimbo del Peru';
 const modelEl = document.querySelector('.id-modelo');
-const MODEL_FALLBACK = modelEl ? modelEl.textContent.trim() : 'MWS715 SDS EXD DRD';
 const loteEl = document.querySelector('.id-lote');
-const LOTE_FALLBACK = loteEl ? loteEl.textContent.trim() : 'Lote · 26L_1';
 const paisInfoEl = document.querySelector('.id-pais-info');
-const PAIS_INFO_FALLBACK = paisInfoEl ? paisInfoEl.textContent.trim() : 'Peru · EN';
 const flagEl = document.querySelector('.id-flag');
 const operadorEl = document.querySelector('.f-op');
-const OPERADOR_FALLBACK = operadorEl ? operadorEl.textContent.trim() : 'Richard · Diogo';
 const nserieEl = document.querySelector('.f-nserie');
-const NSERIE_FALLBACK = nserieEl ? nserieEl.textContent.trim() : 'SWCG02003025';
 const dataInicioEl = document.querySelectorAll('.d-v')[0];
-const DATA_INICIO_FALLBACK = dataInicioEl ? dataInicioEl.textContent.trim() : '14 / 04 / 2026';
 const dataPrevistaEl = document.querySelectorAll('.d-v')[1];
-const DATA_PREVISTA_FALLBACK = dataPrevistaEl ? dataPrevistaEl.textContent.trim() : '22 / 04 / 2026';
 const encCliEl = document.querySelectorAll('.d-v')[2];
-const ENC_CLI_FALLBACK = encCliEl ? encCliEl.textContent.trim() : '34_2026';
 const ordProdEl = document.querySelector('.h-op');
-const ORD_PROD_FALLBACK = ordProdEl ? ordProdEl.textContent.trim() : 'OP_149_2026';
 const folgaEl = document.getElementById('folgaSpan');
 const prazoUsedEl = document.getElementById('prazoUsed');
 const prazoBarEl = document.getElementById('prazoBar');
@@ -819,10 +809,15 @@ const ZONA_CONFIGS = [
 ];
 
 function updateEvolucao(value) {
-  const pct = Number.isFinite(value) ? value : FALLBACK_EV;
-  evEl.textContent = `${pct}%`;
-  evEl.style.color = ec(pct);
-  evEl.style.textShadow = `0 0 60px ${ec(pct)}40`;
+  if (!Number.isFinite(value)) {
+    evEl.textContent = EMPTY;
+    evEl.style.color = 'rgba(255,255,255,0.15)';
+    evEl.style.textShadow = 'none';
+    return;
+  }
+  evEl.textContent = `${value}%`;
+  evEl.style.color = ec(value);
+  evEl.style.textShadow = `0 0 60px ${ec(value)}40`;
 }
 
 function getFieldValue(rowData, header, column, fallback = null) {
@@ -833,40 +828,56 @@ function getFieldValue(rowData, header, column, fallback = null) {
   return value;
 }
 
-function renderText(el, value, fallback = '') {
+function renderText(el, value, fallback = EMPTY) {
   if (!el) return;
   el.textContent = value != null ? String(value) : fallback;
 }
 
 function renderLote(value) {
   if (!loteEl) return;
-  loteEl.innerHTML = `Lote &nbsp;·&nbsp; ${String(value != null ? value : LOTE_FALLBACK)}`;
+  loteEl.innerHTML = `Lote &nbsp;·&nbsp; ${String(value != null ? value : EMPTY)}`;
 }
 
 function renderZones(rowData) {
   const zonas = ZONA_CONFIGS.map(config => {
-    const raw = getFieldValue(rowData, config.header, config.column, 0);
-    return { nome: config.nome, pct: parseSheetPercentage(raw) || 0 };
+    const raw = getFieldValue(rowData, config.header, config.column, null);
+    return { nome: config.nome, pct: parseSheetPercentage(raw) };
   });
 
   zg.innerHTML = '';
   zonas.forEach(z => {
-    const cls = z.pct === 100 ? 'done' : z.pct > 0 ? 'going' : 'empty';
-    const col = bc(z.pct);
+    const pct = z.pct || 0;
+    const cls = pct === 100 ? 'done' : pct > 0 ? 'going' : 'empty';
+    const col = bc(pct);
     const card = document.createElement('div');
     card.className = `zona-card ${cls}`;
     card.innerHTML = `
       <div class="zona-card-label">${z.nome}</div>
-      <div class="zona-card-pct" style="color:${col || 'rgba(255,255,255,0.15)'}">${z.pct}%</div>
+      <div class="zona-card-pct" style="color:${col || 'rgba(255,255,255,0.15)'}">${z.pct == null ? EMPTY : `${pct}%`}</div>
       <div class="zona-card-bar">
-        <div class="zona-card-fill" style="width:${z.pct}%;background:${col || 'rgba(255,255,255,0.07)'}"></div>
+        <div class="zona-card-fill" style="width:${pct}%;background:${col || 'rgba(255,255,255,0.07)'}"></div>
       </div>`;
     zg.appendChild(card);
   });
 }
 
+function clearDeadline() {
+  if (prazoUsedEl) {
+    prazoUsedEl.textContent = EMPTY;
+    prazoUsedEl.style.color = '';
+    prazoUsedEl.style.textShadow = '';
+  }
+  if (prazoBarEl) prazoBarEl.style.width = '0%';
+  if (folgaEl) {
+    folgaEl.textContent = EMPTY;
+    folgaEl.style.color = '';
+  }
+  if (prazoTotalEl) prazoTotalEl.textContent = EMPTY;
+}
+
 function updateDeadline(startValue, dueValue) {
   if (startValue == null || dueValue == null) {
+    clearDeadline();
     return;
   }
 
@@ -878,6 +889,7 @@ function updateDeadline(startValue, dueValue) {
   const remaining = getWorkDaysCount(today, dueValue, false);
 
   if (total == null || used == null || remaining == null) {
+    clearDeadline();
     return;
   }
 
@@ -903,7 +915,7 @@ function updateDeadline(startValue, dueValue) {
 }
 
 function updateStatus(rowData) {
-  const statusValue = getFieldValue(rowData, null, 'A', null);
+  const statusValue = getFieldValue(rowData, 'STATUS', 'AI', null);
   if (!statusEl) return;
   const statusText = statusValue && String(statusValue).trim().length > 0 ? 'Em Curso · ON' : 'standby';
   statusEl.textContent = statusText.toUpperCase();
@@ -912,34 +924,35 @@ function updateStatus(rowData) {
 function renderSheetData(sheetRow) {
   if (!sheetRow) return;
 
-  const evRaw = getFieldValue(sheetRow, 'EVOLUÇÃO', 'Y', FALLBACK_EV);
-  updateEvolucao(parseSheetPercentage(evRaw));
+  updateEvolucao(parseSheetPercentage(getFieldValue(sheetRow, 'EVOLUÇÃO', 'Y', null)));
 
-  renderText(clientEl, getFieldValue(sheetRow, 'CLIENTE', 'K', CLIENT_FALLBACK), CLIENT_FALLBACK);
-  renderText(modelEl, getFieldValue(sheetRow, 'MODELO', 'N', MODEL_FALLBACK), MODEL_FALLBACK);
-  renderLote(getFieldValue(sheetRow, 'LOTE', 'AK', LOTE_FALLBACK));
+  renderText(clientEl, getFieldValue(sheetRow, 'CLIENTE', 'K', EMPTY));
+  renderText(modelEl, getFieldValue(sheetRow, 'MODELO', 'N', EMPTY));
+  renderLote(getFieldValue(sheetRow, 'LOTE', 'O', EMPTY));
 
-  const pais = getFieldValue(sheetRow, 'PAÍS', 'L', 'Portugal');
-  const idioma = getFieldValue(sheetRow, 'IDIOMA', 'M', 'EN');
-  renderText(paisInfoEl, `${pais} · ${idioma}`, PAIS_INFO_FALLBACK);
+  const pais = getFieldValue(sheetRow, 'PAÍS', 'L', null);
+  const idioma = getFieldValue(sheetRow, 'IDIOMA', 'M', null);
+  renderText(paisInfoEl, pais || idioma ? `${pais || EMPTY} · ${idioma || EMPTY}` : EMPTY);
   if (flagEl) {
-    flagEl.textContent = getCountryFlag(pais);
+    flagEl.textContent = pais ? getCountryFlag(pais) : '';
   }
   console.log('País do sheet:', pais);
   if (typeof updateGlobeDestination === 'function') {
     updateGlobeDestination(pais);
   }
 
-  renderText(operadorEl, getFieldValue(sheetRow, 'OPERADOR', 'AH', OPERADOR_FALLBACK), OPERADOR_FALLBACK);
-  renderText(nserieEl, getFieldValue(sheetRow, 'N. SÉRIE', 'X', NSERIE_FALLBACK), NSERIE_FALLBACK);
+  renderText(operadorEl, getFieldValue(sheetRow, 'OPERADOR', 'AH', EMPTY));
+  renderText(nserieEl, getFieldValue(sheetRow, 'N. SÉRIE', 'X', EMPTY));
 
-  renderText(dataInicioEl, formatSheetDate(getFieldValue(sheetRow, 'DATA INICIO PRODUÇÃO', 'E', DATA_INICIO_FALLBACK)), DATA_INICIO_FALLBACK);
-  renderText(dataPrevistaEl, formatSheetDate(getFieldValue(sheetRow, 'DATA PRETENDIDA', 'G', DATA_PREVISTA_FALLBACK)), DATA_PREVISTA_FALLBACK);
+  const dataInicio = getFieldValue(sheetRow, 'DATA INICIO PRODUÇÃO', 'E', null);
+  const dataPrevista = getFieldValue(sheetRow, 'DATA PRETENDIDA', 'G', null);
+  renderText(dataInicioEl, dataInicio != null ? formatSheetDate(dataInicio) : EMPTY);
+  renderText(dataPrevistaEl, dataPrevista != null ? formatSheetDate(dataPrevista) : EMPTY);
 
-  renderText(encCliEl, getFieldValue(sheetRow, 'ENC. CLI.', 'J', ENC_CLI_FALLBACK), ENC_CLI_FALLBACK);
-  renderText(ordProdEl, getFieldValue(sheetRow, 'ORD. PROD.', 'I', ORD_PROD_FALLBACK), ORD_PROD_FALLBACK);
+  renderText(encCliEl, getFieldValue(sheetRow, 'ENC. CLI.', 'J', EMPTY));
+  renderText(ordProdEl, getFieldValue(sheetRow, 'ORD. PROD.', 'I', EMPTY));
 
-  updateDeadline(getFieldValue(sheetRow, 'DATA INICIO PRODUÇÃO', 'E', null), getFieldValue(sheetRow, 'DATA PRETENDIDA', 'G', null));
+  updateDeadline(dataInicio, dataPrevista);
   updateStatus(sheetRow);
   renderZones(sheetRow);
 }
@@ -952,7 +965,7 @@ function initializeSheetWatcher() {
 initializeSheetWatcher();
 
 // Carregar dados iniciais do sheet para atualizar o globo imediatamente
-loadSheetDataCached().then(cached => renderSheetData(cached)).catch(err => console.warn('Initial sheet load failed:', err));
+loadSheetDataCached(SHEET_CONFIG).then(cached => renderSheetData(cached)).catch(err => console.warn('Initial sheet load failed:', err));
 
 /* ── DATE / TIME ── */
 function updateTime() {
